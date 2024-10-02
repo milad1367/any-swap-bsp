@@ -1,0 +1,55 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: SelfStakingPoolFactory
+    network: chapel
+    source:
+      address: "0x800603968F553BB49D5ed2687c481A03b4a27646"
+      abi: SelfStakingPoolFactory
+      startBlock: 44290961
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - OwnershipTransferred
+        - SelfPoolCreated
+      abis:
+        - name: SelfStakingPoolFactory
+          file: SelfStakingPoolFactory/SelfStakingPoolFactory.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: SelfPoolCreated(address,uint256,uint256,uint256,address,uint256,address,uint256)
+          handler: handleSelfPoolCreated
+      file: SelfStakingPoolFactory/SelfStakingPoolFactory.wasm
+  - kind: ethereum
+    name: SelfStakingPool
+    network: chapel
+    source:
+      address: "0xA61aD5f03B3933014a0a203d5F641494696b0A0D"
+      abi: SelfStakingPool
+      startBlock: 44357488
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - SelfStakingPoolOwnershipTransferred
+        - SelfPoolSetWinner
+        - SelfPoolStake
+      abis:
+        - name: SelfStakingPool
+          file: SelfStakingPool/SelfStakingPool.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: SelfPoolSetWinner(address,address,address,address,bool)
+          handler: handleSelfPoolSetWinner
+        - event: SelfPoolStake(address,address)
+          handler: handleSelfPoolStake
+      file: SelfStakingPool/SelfStakingPool.wasm

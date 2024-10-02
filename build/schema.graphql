@@ -1,0 +1,54 @@
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SelfPoolCreated @entity(immutable: true) {
+  id: Bytes!
+  pool: Bytes! # address
+  ticketValue: BigInt! # uint256
+  endTime: BigInt! # uint256
+  capacity: BigInt! # uint256
+  creatorAddress: Bytes! # address
+  creatorPercent: BigInt! # uint256
+  owner: Bytes! # address
+  ownerPercent: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  sumOfStake: Int!
+}
+
+type SelfStakingPoolOwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SelfPoolSetWinner @entity(immutable: true) {
+  id: Bytes!
+  winner: Bytes! # address
+  pool: Bytes! # address
+  creator: Bytes! # address
+  owner: Bytes! # address
+  poolIsMature: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SelfPoolStake @entity(immutable: true) {
+  id: Bytes!
+  staker: Bytes! # address
+  pool: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

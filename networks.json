@@ -1,0 +1,11 @@
+{
+  "chapel": {
+    "SelfStakingPoolFactory": {
+      "address": "0x800603968F553BB49D5ed2687c481A03b4a27646",
+      "startBlock": 44290961
+    },
+    "SelfStakingPool": {
+      "address": "0xA61aD5f03B3933014a0a203d5F641494696b0A0D"
+    }
+  }
+}
