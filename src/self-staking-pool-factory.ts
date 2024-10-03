@@ -1,3 +1,6 @@
+
+
+import { SelfStakingPool } from "../generated/templates";
 import {
   OwnershipTransferred as OwnershipTransferredEvent,
   SelfPoolCreated as SelfPoolCreatedEvent
@@ -43,4 +46,6 @@ export function handleSelfPoolCreated(event: SelfPoolCreatedEvent): void {
   entity.transactionHash = event.transaction.hash
   entity.sumOfStake = 0;
   entity.save()
+  SelfStakingPool.create(event.params.pool);
+
 }
