@@ -3,6 +3,7 @@ import {
   SelfPoolCreated as SelfPoolCreatedEvent
 } from "../generated/SelfStakingPoolFactory/SelfStakingPoolFactory"
 import { OwnershipTransferred, SelfPoolCreated } from "../generated/schema"
+import { log } from "@graphprotocol/graph-ts";
 
 export function handleOwnershipTransferred(
   event: OwnershipTransferredEvent
@@ -21,6 +22,10 @@ export function handleOwnershipTransferred(
 }
 
 export function handleSelfPoolCreated(event: SelfPoolCreatedEvent): void {
+  log.info("handleSelfPoolCreated triggered for Pool: {} by Creator: {}", [
+    event.params.pool.toString(),
+    event.params.creatorAddress.toHexString() // Added the second argument
+  ]);
   let entity = new SelfPoolCreated(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )

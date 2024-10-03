@@ -1,6 +1,4 @@
 specVersion: 1.0.0
-indexerHints:
-  prune: auto
 schema:
   file: schema.graphql
 dataSources:
@@ -27,17 +25,17 @@ dataSources:
         - event: SelfPoolCreated(address,uint256,uint256,uint256,address,uint256,address,uint256)
           handler: handleSelfPoolCreated
       file: SelfStakingPoolFactory/SelfStakingPoolFactory.wasm
-  - kind: ethereum
-    name: SelfStakingPool
+templates:
+  - name: SelfStakingPool
+    kind: ethereum/contract
     network: chapel
     source:
-      address: "0xA61aD5f03B3933014a0a203d5F641494696b0A0D"
       abi: SelfStakingPool
-      startBlock: 44357488
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
+      file: templates/SelfStakingPool/SelfStakingPool.wasm
       entities:
         - SelfStakingPoolOwnershipTransferred
         - SelfPoolSetWinner
@@ -52,4 +50,3 @@ dataSources:
           handler: handleSelfPoolSetWinner
         - event: SelfPoolStake(address,address)
           handler: handleSelfPoolStake
-      file: SelfStakingPool/SelfStakingPool.wasm
